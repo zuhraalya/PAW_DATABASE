@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "Rameyza19.";       // sesuaikan dengan password MySQL kamu kalau ada
-$dbname = "crud_film";
+$pass = "Rameyza19.";       
+$dbname = "pemweb_film";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
