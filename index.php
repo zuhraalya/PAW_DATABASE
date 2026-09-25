@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 
-// proses tambah data
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul = $_POST['judul'];
     $genre = $_POST['genre'];
@@ -64,14 +64,14 @@ $result = $conn->query("SELECT * FROM film ORDER BY id DESC");
             <td><?= htmlspecialchars($row['rating']) ?></td>
             <td><?= htmlspecialchars($row['review']) ?></td>
             <td>
-                <a href="edit.php?id=<?= $row['id'] ?>">Edit</a> |
-                <a href="hapus.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                <form method="GET" action="edit.php" style="display:inline">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <button type="submit">Edit</button>
+                </form>
+                <form method="POST" action="hapus.php" style="display:inline" onsubmit="return confirm('Yakin hapus data ini?')">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <button type="submit">Hapus</button>
+                </form>
             </td>
         </tr>
-        <?php endwhile; ?>
-        <?php if ($result->num_rows === 0): ?>
-        <tr><td colspan="6">Belum ada data</td></tr>
-        <?php endif; ?>
-    </table>
-</body>
-</html>
+        <?php endwhile;
